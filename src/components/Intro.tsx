@@ -41,7 +41,7 @@ export function Intro({ provider, model }: IntroProps) {
       </Box>
 
       <Box marginY={1} flexDirection="column">
-        <Text>Your AI assistant for deep financial research.</Text>
+        <Text>Your AI-powered CLI assistant.</Text>
         <Text color={colors.muted}>Model: <Text color={colors.primary}>{getModelDisplayName(model)}.</Text> Type /model to change.</Text>
       </Box>
     </Box>

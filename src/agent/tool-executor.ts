@@ -34,12 +34,6 @@ export class AgentToolExecutor {
       const toolName = toolCall.name;
       const toolArgs = toolCall.args as Record<string, unknown>;
 
-      // Deduplicate skill calls - each skill can only run once per query
-      if (toolName === 'skill') {
-        const skillName = toolArgs.skill as string;
-        if (ctx.scratchpad.hasExecutedSkill(skillName)) continue;
-      }
-
       yield* this.executeSingle(toolName, toolArgs, ctx);
     }
   }

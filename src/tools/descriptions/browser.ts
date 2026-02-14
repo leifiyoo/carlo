@@ -18,8 +18,6 @@ Control a web browser to navigate websites and extract information.
 
 - Reading static web pages or articles (use **web_fetch** instead — it is faster and returns content in a single call)
 - Simple queries that web_search can already answer
-- Structured financial data (use financial_search instead)
-- SEC filings content (use read_filings instead)
 - General knowledge questions
 
 ## CRITICAL: Navigate Returns NO Content
@@ -69,13 +67,13 @@ Good: Using the /url value you SEE in the snapshot
 The snapshot returns an AI-optimized accessibility tree with refs:
 - navigation [ref=e1]:
   - link "Home" [ref=e2]
-  - link "Investors" [ref=e3]
-  - link "Press Releases" [ref=e4]
+  - link "About" [ref=e3]
+  - link "Blog" [ref=e4]
 - main:
   - heading "Welcome to Acme Corp" [ref=e5]
   - paragraph: Latest news and updates
-  - link "Q4 2024 Earnings" [ref=e6]
-  - link "View All Press Releases" [ref=e7]
+  - link "Read More" [ref=e6]
+  - link "View All Posts" [ref=e7]
 
 ## Act Action Examples
 
@@ -83,19 +81,19 @@ To click a link with ref=e4:
   action="act", request with kind="click" and ref="e4"
 
 To type in a search box with ref=e10:
-  action="act", request with kind="type", ref="e10", text="earnings"
+  action="act", request with kind="type", ref="e10", text="search query"
 
 To press Enter:
   action="act", request with kind="press" and key="Enter"
 
-## Example: Finding a Press Release
+## Example: Finding Content on a Website
 
-1. navigate to https://investors.company.com
-2. snapshot - see links like "Press Releases" [ref=e4]
-3. act with kind="click", ref="e4" - click Press Releases link
-4. snapshot - see list of press releases
-5. act with kind="click", ref="e12" - click specific press release
-6. read - extract the full press release text
+1. navigate to https://example.com
+2. snapshot - see links like "Blog" [ref=e4]
+3. act with kind="click", ref="e4" - click Blog link
+4. snapshot - see list of blog posts
+5. act with kind="click", ref="e12" - click specific post
+6. read - extract the full post text
 
 ## Usage Notes
 

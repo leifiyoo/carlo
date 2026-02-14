@@ -1,7 +1,6 @@
 # Repository Guidelines
 
-- Repo: https://github.com/virattt/dexter
-- Dexter is a CLI-based AI agent for deep financial research, built with TypeScript, Ink (React for CLI), and LangChain.
+- Dexter is a CLI-based AI chatbot assistant, built with TypeScript, Ink (React for CLI), and LangChain.
 
 ## Project Structure
 
@@ -11,14 +10,11 @@
   - Components: `src/components/` (Ink UI components)
   - Hooks: `src/hooks/` (React hooks for agent runner, model selection, input history)
   - Model/LLM: `src/model/llm.ts` (multi-provider LLM abstraction)
-  - Tools: `src/tools/` (financial search, web search, browser, skill tool)
+  - Tools: `src/tools/` (web search, browser, web fetch)
   - Tool descriptions: `src/tools/descriptions/` (rich descriptions injected into system prompt)
-  - Finance tools: `src/tools/finance/` (prices, fundamentals, filings, insider trades, etc.)
-  - Search tools: `src/tools/search/` (Exa preferred, Tavily fallback)
+  - Search tools: `src/tools/search/` (Exa preferred, Perplexity, Tavily fallback)
   - Browser: `src/tools/browser/` (Playwright-based web scraping)
-  - Skills: `src/skills/` (SKILL.md-based extensible workflows, e.g. DCF valuation)
   - Utils: `src/utils/` (env, config, caching, token estimation, markdown tables)
-  - Evals: `src/evals/` (LangSmith evaluation runner with Ink UI)
 - Config: `.dexter/settings.json` (persisted model/provider selection)
 - Environment: `.env` (API keys; see `env.example`)
 - Scripts: `scripts/release.sh`
@@ -31,7 +27,6 @@
 - Dev (watch mode): `bun run dev`
 - Type-check: `bun run typecheck`
 - Tests: `bun test`
-- Evals: `bun run src/evals/run.ts` (full) or `bun run src/evals/run.ts --sample 10` (sampled)
 - CI runs `bun run typecheck` and `bun test` on push/PR.
 
 ## Coding Style & Conventions
@@ -53,26 +48,16 @@
 
 ## Tools
 
-- `financial_search`: primary tool for all financial data queries (prices, metrics, filings). Delegates to multiple sub-tools internally.
-- `financial_metrics`: direct metric lookups (revenue, market cap, etc.).
-- `read_filings`: SEC filing reader for 10-K, 10-Q, 8-K documents.
-- `web_search`: general web search (Exa if `EXASEARCH_API_KEY` set, else Tavily if `TAVILY_API_KEY` set).
+- `web_search`: general web search (Exa if `EXASEARCH_API_KEY` set, Perplexity if `PERPLEXITY_API_KEY` set, else Tavily if `TAVILY_API_KEY` set).
+- `web_fetch`: fetch and extract readable content from URLs.
 - `browser`: Playwright-based web scraping for reading pages the agent discovers.
-- `skill`: invokes SKILL.md-defined workflows (e.g. DCF valuation). Each skill runs at most once per query.
 - Tool registry: `src/tools/registry.ts`. Tools are conditionally included based on env vars.
-
-## Skills
-
-- Skills live as `SKILL.md` files with YAML frontmatter (`name`, `description`) and markdown body (instructions).
-- Built-in skills: `src/skills/dcf/SKILL.md`.
-- Discovery: `src/skills/registry.ts` scans for SKILL.md files at startup.
-- Skills are exposed to the LLM as metadata in the system prompt; the LLM invokes them via the `skill` tool.
 
 ## Agent Architecture
 
 - Agent loop: `src/agent/agent.ts`. Iterative tool-calling loop with configurable max iterations (default 10).
 - Scratchpad: `src/agent/scratchpad.ts`. Single source of truth for all tool results within a query.
-- Context management: Anthropic-style. Full tool results kept in context; oldest results cleared when token threshold exceeded.
+- Context management: Full tool results kept in context; oldest results cleared when token threshold exceeded.
 - Final answer: generated in a separate LLM call with full scratchpad context (no tools bound).
 - Events: agent yields typed events (`tool_start`, `tool_end`, `thinking`, `answer_start`, `done`, etc.) for real-time UI updates.
 
@@ -80,8 +65,7 @@
 
 - LLM keys: `OPENAI_API_KEY`, `ANTHROPIC_API_KEY`, `GOOGLE_API_KEY`, `XAI_API_KEY`, `OPENROUTER_API_KEY`
 - Ollama: `OLLAMA_BASE_URL` (default `http://127.0.0.1:11434`)
-- Finance: `FINANCIAL_DATASETS_API_KEY`
-- Search: `EXASEARCH_API_KEY` (preferred), `TAVILY_API_KEY` (fallback)
+- Search: `EXASEARCH_API_KEY` (preferred), `PERPLEXITY_API_KEY`, `TAVILY_API_KEY` (fallback)
 - Tracing: `LANGSMITH_API_KEY`, `LANGSMITH_ENDPOINT`, `LANGSMITH_PROJECT`, `LANGSMITH_TRACING`
 - Never commit `.env` files or real API keys.
 

@@ -3,18 +3,12 @@
  * Used for context compaction during the agent loop.
  * 
  * Examples:
- * - "AAPL income statements (annual) - 5 periods"
- * - '"bitcoin price" tavily search'
+ * - '"bitcoin price" web search'
+ * - 'web fetch [url=https://example.com]'
  */
 export function getToolDescription(toolName: string, args: Record<string, unknown>): string {
   const parts: string[] = [];
   const usedKeys = new Set<string>();
-
-  // Add ticker if present (most common identifier)
-  if (args.ticker) {
-    parts.push(String(args.ticker).toUpperCase());
-    usedKeys.add('ticker');
-  }
 
   // Add search query if present
   if (args.query) {
@@ -22,7 +16,7 @@ export function getToolDescription(toolName: string, args: Record<string, unknow
     usedKeys.add('query');
   }
 
-  // Format tool name: get_income_statements -> income statements
+  // Format tool name: web_search -> web search
   const formattedToolName = toolName
     .replace(/^get_/, '')
     .replace(/^search_/, '')
@@ -37,7 +31,7 @@ export function getToolDescription(toolName: string, args: Record<string, unknow
 
   // Add limit if present
   if (args.limit && typeof args.limit === 'number') {
-    parts.push(`- ${args.limit} periods`);
+    parts.push(`- ${args.limit} items`);
     usedKeys.add('limit');
   }
 

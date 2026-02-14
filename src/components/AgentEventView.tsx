@@ -6,7 +6,7 @@ import type { AgentEvent } from '../agent/types.js';
 
 /**
  * Format tool name from snake_case to Title Case
- * e.g., get_financial_metrics_snapshot -> Get Financial Metrics Snapshot
+ * e.g., web_search -> Web Search
  */
 function formatToolName(name: string): string {
   return name
@@ -183,11 +183,7 @@ export function ToolEndView({ tool, args, result, duration }: ToolEndViewProps) 
           const keys = Object.keys(parsed.data).filter(k => !k.startsWith('_')); // Exclude _errors
           
           // Tool-specific summaries
-          if (tool === 'financial_search') {
-            summary = keys.length === 1 
-              ? `Called 1 data source` 
-              : `Called ${keys.length} data sources`;
-          } else if (tool === 'web_search') {
+          if (tool === 'web_search') {
             summary = `Did 1 search`;
           } else {
             summary = `Received ${keys.length} fields`;

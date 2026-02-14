@@ -1,10 +1,9 @@
 import { StructuredToolInterface } from '@langchain/core/tools';
-import { createFinancialSearch, createFinancialMetrics, createReadFilings } from './finance/index.js';
 import { exaSearch, perplexitySearch, tavilySearch } from './search/index.js';
 import { skillTool, SKILL_TOOL_DESCRIPTION } from './skill.js';
 import { webFetchTool } from './fetch/index.js';
 import { browserTool } from './browser/index.js';
-import { FINANCIAL_SEARCH_DESCRIPTION, FINANCIAL_METRICS_DESCRIPTION, WEB_SEARCH_DESCRIPTION, WEB_FETCH_DESCRIPTION, READ_FILINGS_DESCRIPTION, BROWSER_DESCRIPTION } from './descriptions/index.js';
+import { WEB_SEARCH_DESCRIPTION, WEB_FETCH_DESCRIPTION, BROWSER_DESCRIPTION } from './descriptions/index.js';
 import { discoverSkills } from '../skills/index.js';
 
 /**
@@ -28,21 +27,6 @@ export interface RegisteredTool {
  */
 export function getToolRegistry(model: string): RegisteredTool[] {
   const tools: RegisteredTool[] = [
-    {
-      name: 'financial_search',
-      tool: createFinancialSearch(model),
-      description: FINANCIAL_SEARCH_DESCRIPTION,
-    },
-    {
-      name: 'financial_metrics',
-      tool: createFinancialMetrics(model),
-      description: FINANCIAL_METRICS_DESCRIPTION,
-    },
-    {
-      name: 'read_filings',
-      tool: createReadFilings(model),
-      description: READ_FILINGS_DESCRIPTION,
-    },
     {
       name: 'web_fetch',
       tool: webFetchTool,

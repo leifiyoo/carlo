@@ -37,7 +37,7 @@ const CACHE_DIR = '.dexter/cache';
 /**
  * Build a human-readable label for log messages.
  * If params contains a 'ticker' field, includes it for readability.
- * Example: "/prices/ (AAPL)" or "/search/"
+ * Example: "/search/ (query)" or "/data/"
  */
 export function describeRequest(
   endpoint: string,
@@ -54,7 +54,7 @@ export function describeRequest(
  * If params contains a 'ticker' field, it's used as a prefix for human-readable filenames.
  * Resulting path:  {clean_endpoint}/{TICKER_}{hash}.json (if ticker present)
  *                  {clean_endpoint}/{hash}.json (otherwise)
- * Example:         prices/AAPL_a1b2c3d4e5f6.json
+ * Example:         search/query_a1b2c3d4e5f6.json
  */
 export function buildCacheKey(
   endpoint: string,

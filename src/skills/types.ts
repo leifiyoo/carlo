@@ -1,6 +1,6 @@
 /**
  * Source of a skill definition.
- * - builtin: Shipped with Dexter (src/skills/builtin/)
+ * - builtin: Shipped with the app (src/skills/)
  * - user: User-level skills (~/.dexter/skills/)
  * - project: Project-level skills (.dexter/skills/)
  */
@@ -11,7 +11,7 @@ export type SkillSource = 'builtin' | 'user' | 'project';
  * Only contains the name and description from YAML frontmatter.
  */
 export interface SkillMetadata {
-  /** Unique skill name (e.g., "dcf") */
+  /** Unique skill name */
   name: string;
   /** Description of when to use this skill */
   description: string;

@@ -6,7 +6,7 @@ import type { AgentEvent } from '../agent/types.js';
 
 /**
  * Format tool name from snake_case to Title Case
- * e.g., get_financial_metrics_snapshot -> Get Financial Metrics Snapshot
+ * e.g., web_search -> Web Search
  */
 function formatToolName(name: string): string {
   return name
@@ -169,35 +169,25 @@ export function ToolEndView({ tool, args, result, duration }: ToolEndViewProps) 
   // Parse result to get a summary
   let summary = 'Received data';
   
-  // Special handling for skill tool
-  if (tool === 'skill') {
-    const skillName = args.skill as string;
-    summary = `Loaded ${skillName} skill`;
-  } else {
-    try {
-      const parsed = JSON.parse(result);
-      if (parsed.data) {
-        if (Array.isArray(parsed.data)) {
-          summary = `Received ${parsed.data.length} items`;
-        } else if (typeof parsed.data === 'object') {
-          const keys = Object.keys(parsed.data).filter(k => !k.startsWith('_')); // Exclude _errors
-          
-          // Tool-specific summaries
-          if (tool === 'financial_search') {
-            summary = keys.length === 1 
-              ? `Called 1 data source` 
-              : `Called ${keys.length} data sources`;
-          } else if (tool === 'web_search') {
-            summary = `Did 1 search`;
-          } else {
-            summary = `Received ${keys.length} fields`;
-          }
+  try {
+    const parsed = JSON.parse(result);
+    if (parsed.data) {
+      if (Array.isArray(parsed.data)) {
+        summary = `Received ${parsed.data.length} items`;
+      } else if (typeof parsed.data === 'object') {
+        const keys = Object.keys(parsed.data).filter(k => !k.startsWith('_'));
+        
+        // Tool-specific summaries
+        if (tool === 'web_search') {
+          summary = `Did 1 search`;
+        } else {
+          summary = `Received ${keys.length} fields`;
         }
       }
-    } catch {
-      // Not JSON, use truncated result
-      summary = truncateResult(result, 50);
     }
+  } catch {
+    // Not JSON, use truncated result
+    summary = truncateResult(result, 50);
   }
   
   return (

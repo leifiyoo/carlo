@@ -167,7 +167,7 @@ export function useAgentRunner(
     setWorkingState({ status: 'thinking' });
     
     try {
-      const agent = await Agent.create({
+      const agent = Agent.create({
         ...agentConfig,
         signal: abortController.signal,
       });

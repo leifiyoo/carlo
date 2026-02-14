@@ -54,7 +54,7 @@ export function CLI() {
     runQuery,
     cancelExecution,
     setError,
-  } = useAgentRunner({ model, modelProvider: provider, maxIterations: 10 }, inMemoryChatHistoryRef);
+  } = useAgentRunner({ model, modelProvider: provider }, inMemoryChatHistoryRef);
   
   // Assign setError to ref so useModelSelection's callback can access it
   setErrorRef.current = setError;

@@ -1,6 +1,6 @@
 # Repository Guidelines
 
-- Dexter is a CLI-based AI chatbot assistant, built with TypeScript, Ink (React for CLI), and LangChain.
+- Carlo is a CLI-based AI chatbot assistant, built with TypeScript, Ink (React for CLI), and LangChain.
 
 ## Project Structure
 
@@ -15,7 +15,7 @@
   - Search tools: `src/tools/search/` (Exa preferred, Perplexity, Tavily fallback)
   - Browser: `src/tools/browser/` (Playwright-based web scraping)
   - Utils: `src/utils/` (env, config, caching, token estimation, markdown tables)
-- Config: `.dexter/settings.json` (persisted model/provider selection)
+- Config: `.carlo/settings.json` (persisted model/provider selection)
 - Environment: `.env` (API keys; see `env.example`)
 - Scripts: `scripts/release.sh`
 
@@ -85,5 +85,5 @@
 ## Security
 
 - API keys stored in `.env` (gitignored). Users can also enter keys interactively via the CLI.
-- Config stored in `.dexter/settings.json` (gitignored).
+- Config stored in `.carlo/settings.json` (gitignored).
 - Never commit or expose real API keys, tokens, or credentials.

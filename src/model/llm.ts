@@ -99,7 +99,7 @@ const MODEL_FACTORIES: Record<string, ModelFactory> = {
         baseURL: 'https://openrouter.ai/api/v1',
         defaultHeaders: {
           'HTTP-Referer': 'https://github.com/virattt/dexter',
-          'X-Title': 'Dexter',
+          'X-Title': 'Carlo',
         },
       },
     }),

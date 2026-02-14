@@ -2,7 +2,6 @@ import React from 'react';
 import { Box, Text } from 'ink';
 import { colors, dimensions } from '../theme.js';
 import packageJson from '../../package.json';
-import { getProviderDisplayName } from '../utils/env.js';
 import { getModelDisplayName } from './ModelSelector.js';
 
 interface IntroProps {
@@ -12,7 +11,7 @@ interface IntroProps {
 
 export function Intro({ provider, model }: IntroProps) {
   const { introWidth } = dimensions;
-  const welcomeText = 'Welcome to Dexter';
+  const welcomeText = 'Welcome to Carlo';
   const versionText = ` v${packageJson.version}`;
   const fullText = welcomeText + versionText;
   const padding = Math.floor((introWidth - fullText.length - 2) / 2);
@@ -31,17 +30,17 @@ export function Intro({ provider, model }: IntroProps) {
       <Box marginTop={1}>
         <Text color={colors.primary} bold>
           {`
-██████╗ ███████╗██╗  ██╗████████╗███████╗██████╗ 
-██╔══██╗██╔════╝╚██╗██╔╝╚══██╔══╝██╔════╝██╔══██╗
-██║  ██║█████╗   ╚███╔╝    ██║   █████╗  ██████╔╝
-██║  ██║██╔══╝   ██╔██╗    ██║   ██╔══╝  ██╔══██╗
-██████╔╝███████╗██╔╝ ██╗   ██║   ███████╗██║  ██║
-╚═════╝ ╚══════╝╚═╝  ╚═╝   ╚═╝   ╚══════╝╚═╝  ╚═╝`}
+ ██████╗ █████╗ ██████╗ ██╗      ██████╗ 
+██╔════╝██╔══██╗██╔══██╗██║     ██╔═══██╗
+██║     ███████║██████╔╝██║     ██║   ██║
+██║     ██╔══██║██╔══██╗██║     ██║   ██║
+╚██████╗██║  ██║██║  ██║███████╗╚██████╔╝
+ ╚═════╝╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝ ╚═════╝`}
         </Text>
       </Box>
 
       <Box marginY={1} flexDirection="column">
-        <Text>Your AI-powered CLI assistant.</Text>
+        <Text>Your friendly AI chat assistant.</Text>
         <Text color={colors.muted}>Model: <Text color={colors.primary}>{getModelDisplayName(model)}.</Text> Type /model to change.</Text>
       </Box>
     </Box>

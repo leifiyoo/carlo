@@ -11,17 +11,15 @@ Use web_fetch as your FIRST choice whenever you need to read the content of a we
 
 ## When to Use
 
-- Reading earnings reports, press releases, or investor relations pages
-- Reading articles from news sites (CNBC, Bloomberg, Reuters, etc.)
+- Reading articles from news sites
 - Accessing any URL discovered via web_search
 - Reading documentation, blog posts, or any static web content
+- Reading press releases or reports
 - When you need the full text content of a known URL
 
 ## When NOT to Use
 
 - Interactive pages that require JavaScript rendering, clicking, or form filling (use browser instead)
-- Structured financial data like prices, metrics, or estimates (use financial_search instead)
-- SEC filings content (use read_filings instead)
 - When you need to navigate through multiple pages by clicking links (use browser instead)
 
 ## Schema

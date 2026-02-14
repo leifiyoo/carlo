@@ -11,17 +11,14 @@ Search the web for current information on any topic. Returns relevant search res
 - Current events, breaking news, recent developments
 - Technology updates, product announcements, industry trends
 - Verifying claims about real-world state (public/private, active/defunct, current leadership)
-- Research on topics outside of structured financial data
+- Research on any topic requiring up-to-date information
 
 ## When NOT to Use
 
-- Financial data queries (use financial_search instead - it has structured, reliable data)
-- Queries about stock prices, company financials, SEC filings, or analyst estimates
-- Pure conceptual/definitional questions ("What is a DCF?")
+- Pure conceptual/definitional questions that don't require current data
 
 ## Usage Notes
 
 - Provide specific, well-formed search queries for best results
 - Returns up to 5 results with URLs and content snippets
-- Use for supplementary research when financial_search doesn't cover the topic
 `.trim();

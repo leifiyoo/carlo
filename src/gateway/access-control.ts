@@ -16,8 +16,8 @@ type PairingStore = Record<string, PairingRequest>;
 
 function pairingPath(): string {
   return (
-    process.env.DEXTER_PAIRING_PATH ??
-    join(homedir(), '.dexter', 'pairing', 'whatsapp.json')
+    process.env.CARLO_PAIRING_PATH ??
+    join(homedir(), '.carlo', 'pairing', 'whatsapp.json')
   );
 }
 
@@ -77,10 +77,10 @@ export function isAllowedPhone(params: {
 
 export function buildPairingReply(code: string, senderId: string): string {
   return [
-    'Dexter access request received.',
+    'Carlo access request received.',
     `Sender ID: ${senderId}`,
     `Approval code: ${code}`,
-    'Ask the operator to approve this code in Dexter gateway config.',
+    'Ask the operator to approve this code in Carlo gateway config.',
   ].join('\n');
 }
 

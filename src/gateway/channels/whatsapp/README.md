@@ -1,6 +1,6 @@
 # WhatsApp Gateway
 
-Chat with Dexter through WhatsApp by linking your phone to the gateway. Messages you send to yourself (self-chat) are processed by Dexter and responses are sent back to the same chat.
+Chat with Carlo through WhatsApp by linking your phone to the gateway. Messages you send to yourself (self-chat) are processed by Carlo and responses are sent back to the same chat.
 
 ## Table of Contents
 
@@ -15,13 +15,13 @@ Chat with Dexter through WhatsApp by linking your phone to the gateway. Messages
 
 ## ✅ Prerequisites
 
-- Dexter installed and working (see main [README](../../../../README.md))
+- Carlo installed and working (see main [README](../../../../README.md))
 - WhatsApp installed on your phone
 - Your phone connected to the internet
 
 ## 🔗 How to Link WhatsApp
 
-Link your WhatsApp account to Dexter by scanning a QR code:
+Link your WhatsApp account to Carlo by scanning a QR code:
 
 ```bash
 bun run gateway:login
@@ -33,7 +33,7 @@ This will:
 3. Go to **Settings > Linked Devices > Link a Device**
 4. Scan the QR code
 
-Once linked, your phone number is automatically added to the allowed senders list and credentials are saved to `~/.dexter/credentials/whatsapp/default/`.
+Once linked, your phone number is automatically added to the allowed senders list and credentials are saved to `~/.carlo/credentials/whatsapp/default/`.
 
 ## 🚀 How to Run
 
@@ -46,10 +46,10 @@ bun run gateway
 You should see:
 ```
 [whatsapp] Connected
-Dexter gateway running. Press Ctrl+C to stop.
+Carlo gateway running. Press Ctrl+C to stop.
 ```
 
-The gateway will now listen for incoming WhatsApp messages and respond using Dexter.
+The gateway will now listen for incoming WhatsApp messages and respond using Carlo.
 
 ## 💬 How to Chat
 
@@ -58,18 +58,18 @@ Once the gateway is running:
 1. Open WhatsApp on your phone
 2. Go to your own chat (message yourself)
 3. Send a message like "What is Apple's revenue?"
-4. You'll see a typing indicator while Dexter processes
-5. Dexter's response will appear prefixed with `[Dexter]`
+4. You'll see a typing indicator while Carlo processes
+5. Carlo's response will appear prefixed with `[Carlo]`
 
 **Example conversation:**
 ```
 You: What was NVIDIA's revenue in 2024?
-[Dexter]: NVIDIA's revenue for fiscal year 2024 was $60.9 billion...
+[Carlo]: NVIDIA's revenue for fiscal year 2024 was $60.9 billion...
 ```
 
 ## ⚙️ Configuration
 
-The gateway configuration is stored at `~/.dexter/gateway.json`. It's auto-created when you run `gateway:login`.
+The gateway configuration is stored at `~/.carlo/gateway.json`. It's auto-created when you run `gateway:login`.
 
 **Default configuration:**
 ```json
@@ -92,7 +92,7 @@ The gateway configuration is stored at `~/.dexter/gateway.json`. It's auto-creat
 
 | Setting | Description |
 |---------|-------------|
-| `channels.whatsapp.allowFrom` | Phone numbers allowed to message Dexter (E.164 format) |
+| `channels.whatsapp.allowFrom` | Phone numbers allowed to message Carlo (E.164 format) |
 | `channels.whatsapp.enabled` | Enable/disable the WhatsApp channel |
 | `gateway.logLevel` | Log verbosity: `silent`, `error`, `info`, `debug` |
 
@@ -103,7 +103,7 @@ If you need to relink your WhatsApp (e.g., after logging out or switching phones
 1. Stop the gateway (Ctrl+C)
 2. Delete the credentials:
    ```bash
-   rm -rf ~/.dexter/credentials/whatsapp/default
+   rm -rf ~/.carlo/credentials/whatsapp/default
    ```
 3. Run login again:
    ```bash
@@ -118,11 +118,11 @@ If you need to relink your WhatsApp (e.g., after logging out or switching phones
 - Try relinking (see above)
 
 **Messages not being received:**
-- Verify your phone number is in `allowFrom` in `~/.dexter/gateway.json`
+- Verify your phone number is in `allowFrom` in `~/.carlo/gateway.json`
 - Make sure you're messaging yourself (self-chat mode)
 
 **Debug logs:**
-- Check `~/.dexter/gateway-debug.log` for detailed logs
+- Check `~/.carlo/gateway-debug.log` for detailed logs
 
 ## 🔧 Full Reset
 
@@ -133,13 +133,13 @@ If you're experiencing persistent issues (connection problems, encryption errors
 2. **Unlink from WhatsApp:**
    - Open WhatsApp on your phone
    - Go to **Settings > Linked Devices**
-   - Tap on the Dexter device and select **Log Out**
+   - Tap on the Carlo device and select **Log Out**
 
 3. **Clear all local data:**
    ```bash
-   rm -rf ~/.dexter/credentials/whatsapp/default
-   rm -rf ~/.dexter/gateway.json
-   rm -rf ~/.dexter/gateway-debug.log
+   rm -rf ~/.carlo/credentials/whatsapp/default
+   rm -rf ~/.carlo/gateway.json
+   rm -rf ~/.carlo/gateway-debug.log
    ```
 
 4. **Relink and start fresh:**

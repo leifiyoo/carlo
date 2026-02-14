@@ -1,6 +1,6 @@
-# Dexter 🤖
+# Carlo 🤖
 
-Dexter is an AI-powered CLI chatbot assistant built with TypeScript, Ink (React for CLI), and LangChain. It features an agentic loop with web search and browsing capabilities.
+Carlo is an AI-powered CLI chatbot assistant built with TypeScript, Ink (React for CLI), and LangChain. It features an agentic loop with web search and browsing capabilities.
 
 ## Table of Contents
 
@@ -16,7 +16,7 @@ Dexter is an AI-powered CLI chatbot assistant built with TypeScript, Ink (React 
 
 ## 👋 Overview
 
-Dexter is a general-purpose AI assistant that runs in your terminal. It can search the web, browse pages, and answer questions using an agentic tool-calling loop.
+Carlo is a general-purpose AI assistant that runs in your terminal. It can search the web, browse pages, and answer questions using an agentic tool-calling loop.
 
 **Key Capabilities:**
 - **Agentic Tool Loop**: Automatically selects and executes tools to gather information
@@ -55,8 +55,8 @@ bun --version
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/virattt/dexter.git
-cd dexter
+git clone https://github.com/virattt/carlo.git
+cd carlo
 ```
 
 2. Install dependencies with Bun:
@@ -87,7 +87,7 @@ cp env.example .env
 
 ## 🚀 How to Run
 
-Run Dexter in interactive mode:
+Run Carlo in interactive mode:
 ```bash
 bun start
 ```
@@ -99,11 +99,11 @@ bun dev
 
 ## 🐛 How to Debug
 
-Dexter logs all tool calls to a scratchpad file for debugging and history tracking. Each query creates a new JSONL file in `.dexter/scratchpad/`.
+Carlo logs all tool calls to a scratchpad file for debugging and history tracking. Each query creates a new JSONL file in `.carlo/scratchpad/`.
 
 **Scratchpad location:**
 ```
-.dexter/scratchpad/
+.carlo/scratchpad/
 ├── 2026-01-30-111400_9a8f10723f79.jsonl
 ├── 2026-01-30-143022_a1b2c3d4e5f6.jsonl
 └── ...
@@ -118,7 +118,7 @@ This makes it easy to inspect exactly what data the agent gathered and how it in
 
 ## 📱 How to Use with WhatsApp
 
-Chat with Dexter through WhatsApp by linking your phone to the gateway. Messages you send to yourself are processed by Dexter and responses are sent back to the same chat.
+Chat with Carlo through WhatsApp by linking your phone to the gateway. Messages you send to yourself are processed by Carlo and responses are sent back to the same chat.
 
 **Quick start:**
 ```bash
@@ -129,7 +129,7 @@ bun run gateway:login
 bun run gateway
 ```
 
-Then open WhatsApp, go to your own chat (message yourself), and ask Dexter a question.
+Then open WhatsApp, go to your own chat (message yourself), and ask Carlo a question.
 
 For detailed setup instructions, configuration options, and troubleshooting, see the [WhatsApp Gateway README](src/gateway/channels/whatsapp/README.md).
 

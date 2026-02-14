@@ -1,11 +1,11 @@
 {
-  "name": "dexter-ts",
+  "name": "carlo",
   "version": "2026.2.11",
-  "description": "Dexter - AI-powered CLI chatbot assistant.",
+  "description": "Carlo - friendly AI chat assistant for the CLI.",
   "type": "module",
   "main": "src/index.tsx",
   "bin": {
-    "dexter-ts": "./src/index.tsx"
+    "carlo": "./src/index.tsx"
   },
   "scripts": {
     "start": "bun run src/index.tsx",

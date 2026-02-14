@@ -53,7 +53,16 @@ type ModelFactory = (name: string, opts: ModelOpts) => BaseChatModel;
 function getApiKey(envVar: string): string {
   const apiKey = process.env[envVar];
   if (!apiKey) {
-    throw new Error(`[LLM] ${envVar} not found in environment variables`);
+    throw new Error(
+      `[LLM] ${envVar} not found in environment variables. ` +
+      `Please set it in your .env file (e.g. ${envVar}=your-actual-key) or export it in your shell.`
+    );
+  }
+  if (apiKey.trim().startsWith('your-')) {
+    throw new Error(
+      `[LLM] ${envVar} contains a placeholder value. ` +
+      `Please replace it with your actual API key in your .env file.`
+    );
   }
   return apiKey;
 }
@@ -88,6 +97,10 @@ const MODEL_FACTORIES: Record<string, ModelFactory> = {
       apiKey: getApiKey('OPENROUTER_API_KEY'),
       configuration: {
         baseURL: 'https://openrouter.ai/api/v1',
+        defaultHeaders: {
+          'HTTP-Referer': 'https://github.com/virattt/dexter',
+          'X-Title': 'Dexter',
+        },
       },
     }),
   moonshot: (name, opts) =>
